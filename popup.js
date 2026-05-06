@@ -15,14 +15,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("pageUrl").textContent = tab.url.slice(0, 60) + (tab.url.length > 60 ? "..." : "");
 
   try {
-    // Inject and run the extraction
+    // Inject extraction script and run it — no persistent content script needed
     const [result] = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       files: ["extract.js"],
     });
 
-    // Now send a message to the content script
-    const response = await chrome.tabs.sendMessage(tab.id, { action: "extract" });
+    // Run the extraction function
+    const [extractResult] = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: () => extractPageContent(),
+    });
+
+    const response = extractResult?.result;
 
     if (response && response.markdown) {
       extractedData = response;

@@ -4,14 +4,7 @@
  * Only activates when the user clicks the extension — no automatic collection.
  */
 
-// Listen for messages from the popup
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  if (msg.action === "extract") {
-    const result = extractPageContent();
-    sendResponse(result);
-  }
-  return true; // keep channel open for async response
-});
+// Called directly via chrome.scripting.executeScript — no message passing needed
 
 function extractPageContent() {
   const url = window.location.href;
