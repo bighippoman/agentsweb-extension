@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'SF Mono', 'Fira Code', monospace; background: #0c0c0c; color: #d4d4d4; width: 340px; padding: 16px; }
+    h1 { font-size: 16px; color: #f0a050; margin-bottom: 4px; }
+    .sub { color: #666; font-size: 11px; margin-bottom: 12px; }
+    .info { background: #111; border: 1px solid #2a2218; border-radius: 6px; padding: 10px; margin-bottom: 12px; font-size: 12px; }
+    .info .label { color: #8a7a60; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .info .value { color: #d4d4d4; margin-top: 2px; word-break: break-all; }
+    .info .value.url { color: #f0a050; font-size: 11px; }
+    .stats { display: flex; gap: 8px; margin-bottom: 12px; }
+    .stat { flex: 1; background: #111; border: 1px solid #2a2218; border-radius: 6px; padding: 8px; text-align: center; }
+    .stat .n { font-size: 16px; font-weight: 700; color: #f0a050; }
+    .stat .l { font-size: 9px; color: #666; text-transform: uppercase; }
+    button { width: 100%; background: #f0a050; color: #000; border: none; padding: 10px; cursor: pointer; font-family: inherit; font-weight: 700; font-size: 13px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    button:hover { background: #f0c070; }
+    button:disabled { background: #3a2a18; color: #5a4a30; cursor: default; }
+    .status { margin-top: 10px; font-size: 11px; text-align: center; min-height: 16px; }
+    .status.ok { color: #4ade80; }
+    .status.err { color: #e05555; }
+    .status.working { color: #f0a050; }
+    .privacy { margin-top: 10px; font-size: 9px; color: #444; text-align: center; line-height: 1.4; }
+    a { color: #f0a050; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>agentsweb.org</h1>
+  <div class="sub">cache this page for AI agents</div>
+
+  <div class="info">
+    <div class="label">current page</div>
+    <div class="value url" id="pageUrl">loading...</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n" id="chars">-</div><div class="l">chars</div></div>
+    <div class="stat"><div class="n" id="words">-</div><div class="l">words</div></div>
+    <div class="stat"><div class="n" id="tokens">-</div><div class="l">~tokens</div></div>
+  </div>
+
+  <button id="cacheBtn" disabled>extracting...</button>
+  <div class="status" id="status"></div>
+
+  <div class="privacy">
+    Only caches when you click. No tracking. No auto-collection.<br>
+    <a href="https://agentsweb.org/about" target="_blank">about</a> · <a href="https://agentsweb.org/dmca" target="_blank">dmca</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
